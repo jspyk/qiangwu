@@ -97,7 +97,7 @@ init_auth_info "\"username\": \"$ADMIN_USERNAME\", \"password\": \"$ADMIN_PASSWO
 
 if [ -n "$RCLONE_CONF" ]; then
   echo -e "##########同步备份############"
-  REMOTE_FOLDER="${RCLONE_REMOTE_PATH:-huggingface:/qiangshi}"
+  REMOTE_FOLDER="${RCLONE_REMOTE_PATH:-huggingface:/qiangwu}"
   echo "[DEBUG] 同步路径：$REMOTE_FOLDER"
 
   OUTPUT=$(rclone ls "$REMOTE_FOLDER" 2>&1)
@@ -125,10 +125,10 @@ if [ -n "$NOTIFY_CONFIG" ]; then
     echo "$NOTIFY_CONFIG" > /ql/data/config/notify.json
     
     # 提取路径名称（兼容各种格式）
-    REMOTE_NAME=$(echo "${RCLONE_REMOTE_PATH:-huggingface:/qiangshi}" | 
+    REMOTE_NAME=$(echo "${RCLONE_REMOTE_PATH:-huggingface:/qiangwu}" | 
                  awk -F':' '{print $2}' | 
                  sed 's:^/*::; s:/.*$::')
-    REMOTE_NAME=${REMOTE_NAME:-qiangshi}
+    REMOTE_NAME=${REMOTE_NAME:-qiangwu}
 
     # 加载通知API
     dir_root=/ql && source /ql/shell/api.sh
